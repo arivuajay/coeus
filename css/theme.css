@@ -4018,3 +4018,12 @@ footer.short-2 .contact-action:hover {
     margin-top: 0;
   }
 }
+
+
+/*NEW UPDATED ON 28-10-2014 */
+.no-btn {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+}

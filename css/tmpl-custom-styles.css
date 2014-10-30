@@ -1,0 +1,180 @@
+/* 
+
+TEMPLATE CUSTOM STYLES
+
+*/
+/* line 7, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl {
+  background-color: #FFF;
+  /* COLUMN ONE */
+  /* COLUMN TWO */
+  /* COLUMN THREE */
+}
+/* line 10, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl h1 {
+  margin-bottom: 15px;
+}
+/* line 15, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-sm-5 {
+  padding-top: 0 !important;
+}
+/* line 18, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-sm-5 .largeThumbnail {
+  background-color: #999;
+  display: block;
+  height: 360px;
+  width: 360px;
+}
+/* line 25, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-sm-5 .smallThumbnail {
+  background-color: #999;
+  display: block;
+  height: 50px;
+  width: 50px;
+}
+/* line 38, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-md-4 {
+  padding-top: 0 !important;
+}
+/* line 42, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-md-4 .form-group .col-md-5 {
+  font-size: 14px;
+  text-align: left;
+}
+/* line 46, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-md-4 .form-group .col-md-7 {
+  font-size: 18px;
+  text-align: right;
+}
+/* line 50, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-md-4 .form-group .btn-primary {
+  float: right;
+}
+/* line 56, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-md-4 #originalPrice .col-md-7 {
+  color: #999;
+  text-decoration: line-through;
+}
+/* line 63, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-md-4 #yourSavings .col-md-7 {
+  color: #8AC007;
+}
+/* line 69, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-md-4 #finalPrice .col-md-7 {
+  font-weight: bold;
+  font-size: 28px;
+}
+/* line 74, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-md-4 #addToCart {
+  height: 55px;
+}
+/* line 77, ../sass/tmpl-custom-styles.scss */
+#singleProductTmpl .col-md-4 #addToCart button {
+  float: right;
+}
+
+/* line 84, ../sass/tmpl-custom-styles.scss */
+#cartTmpl {
+  background-color: #FFF !important;
+}
+/* line 87, ../sass/tmpl-custom-styles.scss */
+#cartTmpl .cartTitle {
+  text-transform: uppercase;
+}
+/* line 91, ../sass/tmpl-custom-styles.scss */
+#cartTmpl #gridHeader {
+  text-transform: uppercase;
+}
+/* line 95, ../sass/tmpl-custom-styles.scss */
+#cartTmpl #cartItem {
+  border-top: 1px solid #999;
+  padding: 8px 0;
+}
+/* line 99, ../sass/tmpl-custom-styles.scss */
+#cartTmpl #cartItem img {
+  background-color: #999;
+  display: block;
+  height: 75px;
+  width: 75px;
+}
+/* line 109, ../sass/tmpl-custom-styles.scss */
+#cartTmpl #cartTotal h2 {
+  text-transform: uppercase;
+}
+/* line 112, ../sass/tmpl-custom-styles.scss */
+#cartTmpl #cartTotal .row {
+  border-top: 1px solid #999;
+  padding: 10px 0;
+}
+/* line 116, ../sass/tmpl-custom-styles.scss */
+#cartTmpl #cartTotal .row .col-md-5 {
+  text-align: left;
+}
+/* line 119, ../sass/tmpl-custom-styles.scss */
+#cartTmpl #cartTotal .row .col-md-7 {
+  text-align: right;
+}
+/* line 126, ../sass/tmpl-custom-styles.scss */
+#cartTmpl #cartButtons {
+  margin: 10px 0;
+  padding: 10px 0;
+}
+/* line 130, ../sass/tmpl-custom-styles.scss */
+#cartTmpl #cartButtons #cartButtonsRight {
+  text-align: right;
+}
+
+/* line 137, ../sass/tmpl-custom-styles.scss */
+#checkOutTmpl {
+  background-color: #FFF !important;
+}
+/* line 140, ../sass/tmpl-custom-styles.scss */
+#checkOutTmpl #yourOrderHeader {
+  font-size: 12px;
+  font-weight: bold;
+  /*
+  margin-left: 0px;
+  margin-right: 0px;
+  */
+}
+/* line 148, ../sass/tmpl-custom-styles.scss */
+#checkOutTmpl #yourOrderItems {
+  border-top: 1px solid #999;
+  font-size: 11px;
+  /*
+  margin-left: 0px;
+  margin-right: 0px;
+  */
+}
+/* line 156, ../sass/tmpl-custom-styles.scss */
+#checkOutTmpl .yourOrderTotals {
+  border-top: 1px solid #999;
+  font-size: 12px;
+  padding: 10px 0;
+  /*
+  margin-left: 0px;
+  margin-right: 0px;
+  */
+}
+/* line 165, ../sass/tmpl-custom-styles.scss */
+#checkOutTmpl .yourOrderTotals .col-md-5 {
+  text-align: left;
+}
+/* line 168, ../sass/tmpl-custom-styles.scss */
+#checkOutTmpl .yourOrderTotals .col-md-7 {
+  text-align: right;
+}
+/* line 172, ../sass/tmpl-custom-styles.scss */
+#checkOutTmpl #cartButtons {
+  border-top: 1px solid #999;
+  margin: 20px 0;
+  padding: 20px 0;
+}
+/* line 177, ../sass/tmpl-custom-styles.scss */
+#checkOutTmpl #cartButtons #cartButtonsRight {
+  text-align: right;
+}
+/* line 181, ../sass/tmpl-custom-styles.scss */
+#checkOutTmpl #shippingTitleRow {
+  margin-top: 65px;
+}

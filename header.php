@@ -32,6 +32,7 @@ www.boxballoon.com
 <script src="<?php bloginfo('stylesheet_directory') ?>/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 <!-- WP Head -->
 <?php wp_head(); ?>
+<link href="<?php bloginfo('stylesheet_directory') ?>/tmpl-custom-styles.css" rel="stylesheet" type="text/css" media="all"/>
 </head>
 
 <body>
