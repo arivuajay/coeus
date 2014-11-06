@@ -1,4 +1,13 @@
 <?php
+
+add_theme_support( 'post-thumbnails' ); 
+
+function jigoshop_show_product_sale_flash( $post, $_product ) {
+		//if ($_product->is_on_sale()) echo '<span class="onsale">'.__('Sale!', 'jigoshop').'</span>';
+	}
+function jigoshop_template_single_price( $post, $_product ) {
+		?><!--<p class="price"><?php //echo apply_filters( 'jigoshop_single_product_price', $_product->get_price_html() ); ?></p>--><?php
+	}
  function custom_address_field_types($field){
   $field = str_replace('input-text','input-text form-control',$field);
   $field = str_replace('<p','<div',$field);
@@ -40,7 +49,7 @@ function your_custom_form_class_attr( $class ) {
 
   global $_product, $post;
 
-  echo '<div class="images">';
+  echo '<div class="images ">';
 
   do_action( 'jigoshop_before_single_product_summary_thumbnails', $post, $_product );
 
@@ -79,7 +88,7 @@ function your_custom_form_class_attr( $class ) {
 
   global $_product, $post;
 
-  echo '<div class="thumbnails">';
+  echo '<div class="thumbnails"><div class="row">';
 
   $thumb_id = get_post_thumbnail_id();
   $small_thumbnail_size = jigoshop_get_image_size( 'shop_thumbnail' );
@@ -115,16 +124,16 @@ function your_custom_form_class_attr( $class ) {
     if ( ! $image || $url == get_post_meta($post->ID, 'file_path', true) )
      continue;
 
-    echo '<a rel="prettyPhoto'.$gallery.'" href="'.esc_url($url).'" title="'.esc_attr($post_title).'" class="zoom ';
+    echo '<div class="col-md-3"><a rel="prettyPhoto'.$gallery.'" href="'.esc_url($url).'" title="'.esc_attr($post_title).'" class="zoom ';
     if ($loop==1 || ($loop-1)%$columns==0) echo 'first';
     if ($loop%$columns==0) echo 'last';
-    echo '">'.$image.'</a>';
+    echo '">'.$image.'</a></div>';
 
    endforeach;
   endif;
   wp_reset_query();
 
-  echo '</div>';
+  echo '</div></div>';
 
  }
  
@@ -163,40 +172,51 @@ function your_custom_form_class_attr( $class ) {
 				$a_weight = $a_length = $a_width = $a_height = '';
 
                 if ( $variation->get_weight() ) {
-                	$a_weight = '
-                    	<tr class="weight">
-                    		<th>Weight</th>
-                    		<td>'.$variation->get_weight().$jigoshop_options->get('jigoshop_weight_unit').'</td>
-                    	</tr>';
+					$a_weight = $variation->get_weight().$jigoshop_options->get('jigoshop_weight_unit');
+                	//$a_weight = '
+//                    	<tr class="weight">
+//                    		<th>Weight</th>
+//                    		<td>'.$variation->get_weight().$jigoshop_options->get('jigoshop_weight_unit').'</td>
+//                    	</tr>';
             	}
 
             	if ( $variation->get_length() ) {
-	            	$a_length = '
-	                	<tr class="length">
-	                		<th>Length</th>
-	                		<td>'.$variation->get_length().$jigoshop_options->get('jigoshop_dimension_unit').'</td>
-	                	</tr>';
+					$a_length = $variation->get_length().'" x';
+	            	//$a_length = '
+//	                	<tr class="length">
+//	                		<th>Length</th>
+//	                		<td>'.$variation->get_length().$jigoshop_options->get('jigoshop_dimension_unit').'</td>
+//	                	</tr>';
                 }
 
                 if ( $variation->get_width() ) {
-	                $a_width = '
-	                	<tr class="width">
-	                		<th>Width</th>
-	                		<td>'.$variation->get_width().$jigoshop_options->get('jigoshop_dimension_unit').'</td>
-	                	</tr>';
+					$a_width = ' '.$variation->get_width().'" x';
+	               // $a_width = '
+//	                	<tr class="width">
+//	                		<th>Width</th>
+//	                		<td>'.$variation->get_width().$jigoshop_options->get('jigoshop_dimension_unit').'</td>
+//	                	</tr>';
                 }
 
                 if ( $variation->get_height() ) {
-	                $a_height = '
-	                	<tr class="height">
-	                		<th>Height</th>
-	                		<td>'.$variation->get_height().$jigoshop_options->get('jigoshop_dimension_unit').'</td>
-	                	</tr>
-	                ';
+					$a_height = ' '.$variation->get_height().'"';
+	                //$a_height = '
+//	                	<tr class="height">
+//	                		<th>Height</th>
+//	                		<td>'.$variation->get_height().$jigoshop_options->get('jigoshop_dimension_unit').'</td>
+//	                	</tr>
+//	                ';
             	}
 					
-					$vat = $variation->get_price();//foreach($vat as $vaaat):
+					//$vat = $variation->get_price();foreach($vat as $vaaat):
+					//$variant_price = $variation->get_weight();
 					
+					//<div class="form-group" id="finalPrice">
+//                    <div class="row">
+//                    <div class="col-md-5">Stock</div>
+//                    <div class="col-md-7"><p class="stock '.esc_attr( $availability['class'] ). '">'.$availability['availability'].'</p></div>
+//                    </div>
+//                    </div>
 					
                 $variationsAvailable[] = array(
 					'variation_id'     => $variation->get_variation_id(),
@@ -227,12 +247,11 @@ function your_custom_form_class_attr( $class ) {
     <div class="col-md-7">'.jigoshop_price($variation->get_price()).'</div>
   </div>
 </div>
-
 <hr/>',
 
 					
 					//<span class="price">'.$variation->get_price_html().'</span>',
-					'availability_html'=> '<p class="stock ' . esc_attr( $availability['class'] ) . '">'. $availability['availability'].'</p>',
+					'availability_html'=> '<p style="display:none" class="stock ' . esc_attr( $availability['class'] ) . '">'. $availability['availability'].'</p>',
 					'a_weight'         => $a_weight,
 					'a_length'         => $a_length,
 					'a_width'          => $a_width,
@@ -297,7 +316,7 @@ function your_custom_form_class_attr( $class ) {
 							<?php foreach ( $options as $value ) : ?>
 								<?php if ( taxonomy_exists( 'pa_'.$sanitized_name )) : ?>
 									<?php $term = get_term_by( 'slug', $value, 'pa_'.$sanitized_name ); ?>
-                                  <div class="radio"><label><input id="<?php echo esc_attr( $sanitized_name ); ?>" type="radio" name="tax_<?php echo $sanitized_name; ?>" value="<?php echo esc_attr( $term->slug ); ?>"<?php checked( $selected_value, $term->slug, false ) ?>>  <?php echo $term->name;  ?></label></div>
+                                  <div class="radio"><label><input id="<?php echo esc_attr( $sanitized_name ); ?>" type="radio" name="tax_<?php echo $sanitized_name; ?>" value="<?php echo esc_attr( $term->slug ); ?>"<?php checked( $selected_value, $term->slug ) ?>>  <?php echo $term->name;  ?></label></div>
 									<!--<option value="<?php echo esc_attr( $term->slug ); ?>" <?php selected( $selected_value, $term->slug) ?>><?php  echo $term->name; ?></option>-->
 								<?php else :
 									$display_value = apply_filters('jigoshop_product_attribute_value_custom',esc_attr(sanitize_text_field($value)),$sanitized_name);
@@ -322,13 +341,15 @@ function your_custom_form_class_attr( $class ) {
 
 <div class="form-group" id="addToCart">
 	<!--<button type="button" class="btn btn-primary btn-lg">Add To Cart</button>-->
+    
+     <input type="hidden" name="variation_id" value="" />
+                <input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
+                <div style="display:none;" class="quantity"><input name="quantity" value="1" size="4" title="Qty" class="input-text qty text" maxlength="12" /></div>
+				<input type="submit" class="button-alt" value="<?php esc_html_e('Add to cart', 'jigoshop'); ?>" />
 </div>
             
             
-                <input type="hidden" name="variation_id" value="" />
-                <input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
-                <div class="quantity"><input name="quantity" value="1" size="4" title="Qty" class="input-text qty text" maxlength="12" /></div>
-				<input type="submit" class="button-alt" value="<?php esc_html_e('Add to cart', 'jigoshop'); ?>" />
+               
 			</div>
 			<?php do_action('jigoshop_add_to_cart_form'); ?>
 		</form>

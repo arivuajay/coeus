@@ -21,7 +21,7 @@ $options = Jigoshop_Base::get_options();
 	<p><a href="<?php echo esc_url(jigoshop_cart::get_shop_url()); ?>" class="button"><?php _e('&larr; Return to Shop', 'jigoshop'); ?></a></p>
 	<?php else: ?>
 
-      <div class="col-md-12 col-sm-9">
+      <div class="col-md-8 col-sm-9">
       
       <form class="form-cart-items" action="<?php echo esc_url(jigoshop_cart::get_cart_url()); ?>" method="post">
       <?php /* GRID HEADER */ ?>
@@ -30,7 +30,7 @@ $options = Jigoshop_Base::get_options();
         
           <div class="row">
             <div class="col-md-4">
-            
+            <?php _e('IMG', 'jigoshop'); ?>
             </div><!-- / -->
             <div class="col-md-8" id="">
             <?php _e('Product Name', 'jigoshop'); ?>
@@ -41,18 +41,18 @@ $options = Jigoshop_Base::get_options();
         <div class="col-md-6" id="gridHeaderRight">
         
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
             <?php _e('Unit Price', 'jigoshop'); ?>
             </div><!-- / -->
-            <div class="col-md-3" id="">
+            <div class="col-md-4" id="">
             <?php _e('Quantity', 'jigoshop'); ?>
             </div><!-- / -->
-            <div class="col-md-3" id="">
+            <div class="col-md-4" id="">
             <?php _e('Price', 'jigoshop'); ?>
             </div><!-- / -->
-            <div class="col-md-3">
+            <?php /*?><div class="col-md-3">
             <?php _e('Remove', 'jigoshop'); ?>
-            </div><!-- / -->
+            </div><?php */?><!-- / -->
           </div><!-- / -->
         
         </div><!-- /gridHeaderRight -->
@@ -111,25 +111,32 @@ $options = Jigoshop_Base::get_options();
 			<div class="col-md-6" id="cartItemRight">
 			
 			  <div class="row">
-				<div class="col-md-3">
+				<div class="col-md-4">
 				<?php echo apply_filters('jigoshop_product_price_display_in_cart', jigoshop_price($product->get_price_excluding_tax()), $values['product_id'], $values); ?>
 				</div><!-- / -->
-				<div class="col-md-3 product-quantity" id="">
-					<?php ob_start(); // It is important to keep quantity in single line ?>
-							<div class="quantity" data-item="<?php echo $cart_item_key; ?>" data-product="<?php echo $product->id; ?>"><input name="cart[<?php echo $cart_item_key ?>][qty]" value="<?php echo esc_attr($values['quantity']); ?>" size="4" title="Qty" class="input-text qty text" maxlength="12" /></div>
-							<?php
-							$quantity_display = ob_get_clean();
-							echo apply_filters('jigoshop_product_quantity_display_in_cart', $quantity_display, $values['product_id'], $values);
-							?>
+                <div class="product-quantity">
+				<div class="col-md-4 product-quantity-subparent" id="">
+                	<div class="quantity2" data-item="<?php echo $cart_item_key; ?>" data-product="<?php echo $product->id; ?>">
+                	<input type="text" value="<?php echo esc_attr($values['quantity']); ?>" id="" class="form-control qty qty2" maxlength="12" name="cart[<?php echo $cart_item_key ?>][qty]">
+                    </div>
+                    
+					<?php /*?><?php ob_start(); // It is important to keep quantity in single line ?>
+					<div class="quantity" data-item="<?php echo $cart_item_key; ?>" data-product="<?php echo $product->id; ?>"><input name="cart[<?php echo $cart_item_key ?>][qty]" value="<?php echo esc_attr($values['quantity']); ?>" size="4" title="Qty" class="input-text qty text" maxlength="12" /></div>
+					<?php
+						$quantity_display = ob_get_clean();
+						echo apply_filters('jigoshop_product_quantity_display_in_cart', $quantity_display, $values['product_id'], $values);
+                    ?><?php */?>
 				</div>
                 <!-- / -->
-				<div class="col-md-3 product-subtotal" id="">
+				<div class="col-md-4 product-subtotal" id="">
 				<?php echo apply_filters('jigoshop_product_subtotal_display_in_cart', jigoshop_price($product->get_price_excluding_tax() * $values['quantity']), $values['product_id'], $values); ?>
 				</div><!-- / -->
+                </div>
                 
-                <div class="col-md-3">
+                <!--Remove icon -->
+                <?php /*?><div class="col-md-3">
                 <a href="<?php echo esc_url(jigoshop_cart::get_remove_url($cart_item_key)); ?>" class="remove" title="<?php echo esc_attr(__('Remove this item.', 'jigoshop')); ?>">&times;</a>
-	            </div><!-- / -->
+	            </div><?php */?><!-- / -->
 
 			  </div><!-- / -->
 			
@@ -179,10 +186,8 @@ $options = Jigoshop_Base::get_options();
         
         </div><!-- /cartTotalLeft -->
         
-        <div class="col-md-3" id="cartTotalRight">
-        </div>
         
-        <div class="col-md-3 cart_totals_table" id="cartTotalRight">
+        <div class="col-md-6 cart_totals_table" id="cartTotalRight">
         <?php do_action('cart-collaterals'); ?>
         <?php
 		// Hide totals if customer has set location and there are no methods going there
@@ -269,8 +274,8 @@ $options = Jigoshop_Base::get_options();
           </div>
 
         </div><!-- /#cartButtonsLeft -->
-        <div class="col-md-3" id="cartButtonsRight"></div>
-        <div class="col-md-3" id="cartButtonsRight">
+        
+        <div class="col-md-6" id="cartButtonsRight">
 
           <div class="form-group" id="proceedToCheckout">
             <button type="button" class="btn btn-primary btn-lg" onclick="location.href ='<?php echo esc_url(jigoshop_cart::get_checkout_url()); ?>'"><?php _e('Proceed to Checkout &rarr;', 'jigoshop'); ?></button>

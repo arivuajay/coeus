@@ -30,8 +30,10 @@ www.boxballoon.com
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700%7CRaleway:700' rel='stylesheet' type='text/css'>
 
 <script src="<?php bloginfo('stylesheet_directory') ?>/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
 <!-- WP Head -->
 <?php wp_head(); ?>
+<script src="<?php echo get_template_directory_uri(); ?>/js/modified.js"></script>
 <link href="<?php bloginfo('stylesheet_directory') ?>/tmpl-custom-styles.css" rel="stylesheet" type="text/css" media="all"/>
 </head>
 

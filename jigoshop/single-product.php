@@ -54,15 +54,17 @@
             <span><?php echo $_product->get_categories( '| '); ?><br/> 
             <?php
 			if ($jigoshop_options->get('jigoshop_enable_sku')=='yes' && !empty($_product->sku)) :
-				echo __('Item#','jigoshop').': ' . $_product->sku;
+				echo __('Item#','jigoshop').' ' . $_product->sku;
 			endif;
 			?>
             </span>
+            <h2>Size</h2>
+            <span class="changing_length"></span><span class="changing_width"></span><span class="changing_height"></span>
            
-           <?php if($_product->get_weight()): ?>
+           <?php //if($_product->get_weight()): ?>
             <h2>Weight</h2>
-            <span><?php echo $_product->get_weight(); ?></span>
-            <?php endif; ?>
+            <span class="changing_weight">Nill</span>
+            <?php //endif; ?>
             <p>
             <?php 
             $content = get_the_content();
