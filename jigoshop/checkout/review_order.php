@@ -15,7 +15,115 @@
 
 $options = Jigoshop_Base::get_options();?>
 
-<div id="order_review">
+        <div id="yourOrderHeader" class="row">
+        	<div id="" class="col-md-6"><?php _e('Product Name', 'jigoshop'); ?></div><!-- / -->
+            <div id="" class="col-md-3"><?php _e('Qty', 'jigoshop'); ?></div><!-- / -->
+            <div id="" class="col-md-3"><?php _e('Price', 'jigoshop'); ?></div><!-- / -->
+        </div><!-- /#yourOrderHeader -->
+        
+        <?php
+		foreach (jigoshop_cart::$cart_contents as $item_id => $values) :
+			/** @var jigoshop_product $product */
+			$product = $values['data'];
+			if ($product->exists() && $values['quantity'] > 0) :
+				$variation = jigoshop_cart::get_item_data($values);
+				$customization = '';
+				$custom_products = (array)jigoshop_session::instance()->customized_products;
+				$product_id = !empty($values['variation_id']) ? $values['variation_id'] : $values['product_id'];
+				$custom = isset($custom_products[$product_id]) ? $custom_products[$product_id] : ''; ?>
+                <div id="yourOrderItems" class="row your_order">
+                    <div id="" class="col-md-6">
+                    <a title="" id="" href="<?php echo esc_url(apply_filters('jigoshop_product_url_display_in_cart', get_permalink($values['product_id']), $item_id)); ?>"><?php echo $product->get_title().$variation; ?></a>
+                    <?php //echo $product->get_title().$variation;
+						if (!empty($custom)) :
+							$label = apply_filters('jigoshop_customized_product_label', __(' Personal: ', 'jigoshop')); ?>
+							<dl class="customization">
+								<dt class="customized_product_label">
+									<?php echo $label; ?>
+								</dt>
+								<dd class="customized_product">
+									<?php echo $custom; ?>
+								</dd>
+							</dl>
+						<?php endif; ?>
+                        
+                        </div><!-- / -->
+                    <div id="" class="col-md-3"><?php echo $values['quantity']; ?></div><!-- / -->
+                    <div id="" class="col-md-3"><?php echo jigoshop_price($product->get_price_excluding_tax() * $values['quantity']/*, array('ex_tax_label' => 1)*/);?>
+                    </div><!-- / -->
+                </div>
+			<?php endif;
+		endforeach;
+		?>
+        
+        <div class="row yourOrderTotals">
+          <div class="col-md-5">
+          <?php $price_label = jigoshop_cart::show_retail_price() ? __('Retail Price', 'jigoshop') : __('Subtotal', 'jigoshop'); ?>
+          <strong><?php echo $price_label; ?></strong>
+          </div>
+          <div class="col-md-7"><?php echo jigoshop_cart::get_cart_subtotal(true, false, true); ?></div>
+        </div>
+        
+        <div class="row yourOrderTotals">
+			<?php jigoshop_checkout::render_shipping_dropdown(); ?>
+        </div>
+
+		<?php if (jigoshop_cart::show_retail_price() && Jigoshop_Base::get_options()->get('jigoshop_prices_include_tax') == 'no') : ?>
+            <div class="row yourOrderTotals">
+              <div class="col-md-5"><strong><?php _e('Subtotal', 'jigoshop'); ?></strong></div>
+              <div class="col-md-7"><?php echo jigoshop_cart::get_cart_subtotal(true, true); ?></div>
+            </div>
+		<?php elseif (jigoshop_cart::show_retail_price()): ?>
+            <div class="row yourOrderTotals">
+              <div class="col-md-5"><strong><?php _e('Subtotal', 'jigoshop'); ?></strong></div>
+              <?php
+				$price = jigoshop_cart::$cart_contents_total_ex_tax + jigoshop_cart::$shipping_total;
+				$price = jigoshop_price($price, array('ex_tax_label' => 1));
+				?>
+              <div class="col-md-7"><?php echo $price; ?></div>
+            </div>
+		<?php endif; ?>
+        
+        <?php if (jigoshop_cart::tax_after_coupon()): ?>
+            <div class="row yourOrderTotals">
+              <div class="col-md-5"><?php _e('Discount', 'jigoshop'); ?></div><!-- / -->
+              <div class="col-md-7">-<?php echo jigoshop_cart::get_total_discount(); ?></div><!-- / -->
+            </div><!-- / -->
+		<?php endif; ?>
+        
+		<?php if ($options->get('jigoshop_calc_taxes') == 'yes'):
+			foreach (jigoshop_cart::get_applied_tax_classes() as $tax_class):
+				if (jigoshop_cart::get_tax_for_display($tax_class)) : ?>
+                    <div class="row yourOrderTotals">
+                      <div class="col-md-5"><?php echo jigoshop_cart::get_tax_for_display($tax_class); ?></div><!-- / -->
+                      <div class="col-md-7"><?php echo jigoshop_cart::get_tax_amount($tax_class) ?></div><!-- / -->
+                    </div><!-- / -->
+				<?php endif;
+			endforeach;
+		endif; ?>
+        
+        <?php do_action('jigoshop_after_review_order_items'); ?>
+        
+        <?php if (!jigoshop_cart::tax_after_coupon() && jigoshop_cart::get_total_discount()) : ?>
+        	 <div class="row yourOrderTotals discount">
+                  <div class="col-md-5"><?php _e('Discount', 'jigoshop'); ?></div><!-- / -->
+                  <div class="col-md-7">-<?php echo jigoshop_cart::get_total_discount(); ?></div><!-- / -->
+                </div>
+		<?php endif; ?>
+
+         <div class="row yourOrderTotals discount">
+              <div class="col-md-5"><?php _e('Discount', 'jigoshop'); ?></div><!-- / -->
+              <div class="col-md-7">-<?php echo jigoshop_cart::get_total_discount(); ?></div><!-- / -->
+            </div>
+
+        
+        <div class="row yourOrderTotals">
+          <div class="col-md-5"><strong><?php _e('Grand Total', 'jigoshop'); ?></strong></div><!-- / -->
+          <div class="col-md-7"><?php echo jigoshop_cart::get_total(); ?></div><!-- / -->
+        </div><!-- / -->
+
+
+<div id="order_review" style="display:none; visibility:hidden">
 	<table class="shop_table">
 		<thead>
 		<tr>

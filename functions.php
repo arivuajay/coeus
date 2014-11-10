@@ -1,5 +1,6 @@
 <?php
 
+	
 add_theme_support( 'post-thumbnails' ); 
 
 function jigoshop_show_product_sale_flash( $post, $_product ) {
@@ -310,10 +311,10 @@ function your_custom_form_class_attr( $class ) {
 							<?php if ( empty( $_POST ) ): ?>
 									<?php $selected_value = ( isset( $default_attributes[ $sanitized_name ] ) ) ? $default_attributes[ $sanitized_name ] : ''; ?>
 							<?php else: ?>
-									<?php $selected_value = isset( $_POST[ 'tax_' . $sanitized_name ] ) ? $_POST[ 'tax_' . $sanitized_name ] : ''; ?>
+									<?php $selected_value = 1;//isset( $_POST[ 'tax_' . $sanitized_name ] ) ? $_POST[ 'tax_' . $sanitized_name ] : ''; ?>
 							<?php endif; ?>
 
-							<?php foreach ( $options as $value ) : ?>
+							<?php  foreach ( $options as $value ) : ?>
 								<?php if ( taxonomy_exists( 'pa_'.$sanitized_name )) : ?>
 									<?php $term = get_term_by( 'slug', $value, 'pa_'.$sanitized_name ); ?>
                                   <div class="radio"><label><input id="<?php echo esc_attr( $sanitized_name ); ?>" type="radio" name="tax_<?php echo $sanitized_name; ?>" value="<?php echo esc_attr( $term->slug ); ?>"<?php checked( $selected_value, $term->slug ) ?>>  <?php echo $term->name;  ?></label></div>
@@ -321,7 +322,7 @@ function your_custom_form_class_attr( $class ) {
 								<?php else :
 									$display_value = apply_filters('jigoshop_product_attribute_value_custom',esc_attr(sanitize_text_field($value)),$sanitized_name);
 								?>
-                               <div class="radio"><label><input id="<?php echo esc_attr( $sanitized_name ); ?>" type="radio" name="tax_<?php echo $sanitized_name; ?>" value="<?php echo $value; ?>"<?php checked( $selected_value, $term->slug, false )?> >  <?php echo $term->name; ?></label></div>
+                               <div class="radio"><label><input id="111111111<?php echo esc_attr( $sanitized_name ); ?>" type="radio" name="tax_<?php echo $sanitized_name; ?>" value="<?php echo $value; ?>"<?php checked( $selected_value, $term->slug, false )?> >  <?php echo $term->name; ?></label></div>
 									<!--<option value="<?php echo $value; ?>"<?php selected( $selected_value, $value) ?> ><?php echo $display_value; ?></option>-->
 								<?php endif;?>
 							<?php endforeach; ?>

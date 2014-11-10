@@ -54,3 +54,32 @@ Text Domain: twentyfourteen
 	float:right !important;
 	
 	}
+#payment ul.payment_methods {
+	padding:1em 0 !important;
+}
+
+#payment div.form-row {
+  border-top: 1px solid #999999 !important;
+}
+
+.info {
+  margin: 0 30px;
+}
+
+form.login {
+  margin: 20px 30px !important;
+}
+
+#payment {
+	background: none !important;;
+}
+dl {
+    margin-bottom: 0px !important;
+   
+}
+
+div.jigoshop_error, div.jigoshop_message {
+   
+    margin: 44px 0 !important;
+   
+}

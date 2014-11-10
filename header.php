@@ -33,7 +33,7 @@ www.boxballoon.com
 
 <!-- WP Head -->
 <?php wp_head(); ?>
-<script src="<?php echo get_template_directory_uri(); ?>/js/modified.js"></script>
+<!--<script src="<?php //echo get_template_directory_uri(); ?>/js/modified.js"></script>-->
 <link href="<?php bloginfo('stylesheet_directory') ?>/tmpl-custom-styles.css" rel="stylesheet" type="text/css" media="all"/>
 </head>
 

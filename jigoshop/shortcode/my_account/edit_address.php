@@ -11,7 +11,7 @@
   <div class="container">
   
   <h1 class="cartTitle">Edit My Address</h1>
-  
+   <?php jigoshop::show_messages(); ?>
 	<form id="address" method="post" action="<?php echo esc_url($url); ?>">    
     <div class="row">
       <?php /* LEFT COLUMN */ ?>
