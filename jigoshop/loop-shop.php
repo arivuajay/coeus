@@ -32,7 +32,6 @@ if ( have_posts() ) {
 $count = $wp_query->post_count;
 
 if ( have_posts()) : while ( have_posts() ) : the_post(); $_product = new jigoshop_product( $post->ID ); $loop++;
-
 	?>
 	<li class="product <?php if ($loop == $count) echo 'last'; if ($loop==1) echo 'first'; ?>">
 
@@ -41,7 +40,7 @@ if ( have_posts()) : while ( have_posts() ) : the_post(); $_product = new jigosh
 			<?php do_action('jigoshop_before_shop_loop_item_title', $post, $_product); ?>
 			<strong><?php the_title(); ?></strong>
 		</a>
-                <div class="short_desc">36 x 54 Single Canvas Print</div>
+                <div class="short_desc"><?php echo $_product->get_categories(); ?></div>
                 <?php do_action('jigoshop_after_shop_loop_item_title', $post, $_product); ?>
 
 		<?php do_action('jigoshop_after_shop_loop_item', $post, $_product); ?>
@@ -69,29 +68,3 @@ echo apply_filters( 'jigoshop_loop_shop_content', $content );
 
 do_action( 'jigoshop_after_shop_loop' );
 ?>
-
-<!--      <li class="product first">
-      
-      	<a id="productAnchor" href="http://livedemo00.template-help.com/jigoshop_47695/product/product-15/">
-        <span class="onsale">Sale!</span>
-        <img width="230" height="230" src="http://cratecanvas.com/wp-content/uploads/2014/01/550x550_36x54-portrait-bishops-prayer-003-300x300.jpg" class="attachment-shop_small wp-post-image" alt="sign_indoor_outdoor_all_weather_seating_by_piergiorgio_cazzaniga_1"> 
-        <strong>Bisopâ€™s Prayer</strong> 
-        </a>
-        
-        <div class="short_desc">36 x 54 Single Canvas Print</div>
-        
-        <span class="price">
-        <del>$95.00</del>
-        <ins>$80.00</ins>
-        </span>
-        
-        <a id="detailsButton" href="http://livedemo00.template-help.com/jigoshop_47695/product/product-15/" class="btn"><b>Details</b></a>
-        
-        <a id="addToCartButton" href="#" class="button" rel="nofollow">
-        <span class="glyphicon glyphicon-shopping-cart"></span>
-        <b>Add to cart</b>
-        </a>
-        
-        <div class="clear"></div>
-        
-      </li>-->

@@ -79,9 +79,9 @@
                     </ul><!-- /filterColumn -->
                 </div><!-- /shopFilterWidget -->
 
-            <?php do_action('jigoshop_sidebar'); ?>
-            <?php do_action('jigoshop_after_sidebar'); ?>                
-                
+                <?php do_action('jigoshop_sidebar'); ?>
+                <?php do_action('jigoshop_after_sidebar'); ?>                
+
             </div><!-- /filterColumn -->
 
             <div id="productColumn" class="col-md-9">
@@ -106,52 +106,33 @@
                         </select>
                     </div>
                     <div class="col-md-6 sortingColumns" style="text-align:right;">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
-                            <button type="button" class="btn btn-default">1</button>
-                            <button type="button" class="btn btn-default">2</button>
-                            <button type="button" class="btn btn-default">3</button>
-                            <button type="button" class="btn btn-default">4</button>
-                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
-                        </div>
+                        <?php do_action('jigoshop_pagination'); ?>
                     </div>
                 </div><!-- /sortingBar -->
 
-                <?php do_action('jigoshop_before_main_content'); ?>
+                <?php // do_action('jigoshop_before_main_content'); ?>
                 <?php
                 $shop_page_id = jigoshop_get_page_id('shop');
                 $shop_page = get_post($shop_page_id);
                 echo apply_filters('the_content', $shop_page->post_content);
                 ?>
-                    <?php
-                    ob_start();
-                    jigoshop_get_template_part('loop', 'shop');
-                    $products_list_html = ob_get_clean();
-                    echo apply_filters('jigoshop_products_list', $products_list_html);
-                    ?>
-                
-                <?php do_action('jigoshop_pagination'); ?>
+                <?php
+                ob_start();
+                jigoshop_get_template_part('loop', 'shop');
+                $products_list_html = ob_get_clean();
+                echo apply_filters('jigoshop_products_list', $products_list_html);
+                ?>
 
-                <?php do_action('jigoshop_after_main_content'); ?>
-
-
-
+                <?php // do_action('jigoshop_after_main_content'); ?>
                 <?php
                 /* ------------------------------ +/
                   SORTING BAR:
                   /+ ------------------------------ */
                 ?>
-                <div id="sortingBar" class="row" style="border-top:1px solid #CCC; padding-top: 5px; padding-bottom: 5px;">
+                <div id="sortingBar" class="row" style="border-top:1px solid #CCC; padding-top: 5px; padding-bottom: 5px; float: left; width: 100%;">
                     <div class="col-md-6 sortingColumns"><!-- EMPTY --></div>
                     <div class="col-md-6 sortingColumns" style="text-align:right;">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
-                            <button type="button" class="btn btn-default">1</button>
-                            <button type="button" class="btn btn-default">2</button>
-                            <button type="button" class="btn btn-default">3</button>
-                            <button type="button" class="btn btn-default">4</button>
-                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
-                        </div>
+                        <?php do_action('jigoshop_pagination'); ?>
                     </div>
                 </div><!-- /sortingBar -->
 
