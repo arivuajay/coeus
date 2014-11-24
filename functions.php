@@ -356,5 +356,3 @@ function your_custom_form_class_attr( $class ) {
 		</form>
 		<?php
 	}
-
-?>
