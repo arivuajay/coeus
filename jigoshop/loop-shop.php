@@ -29,23 +29,26 @@ if ( ! isset( $columns ) || ! $columns ) $columns = apply_filters( 'loop_shop_co
 if ( have_posts() ) {
 	ob_start();
 }
-$count = $wp_query->post_count;
 
 if ( have_posts()) : while ( have_posts() ) : the_post(); $_product = new jigoshop_product( $post->ID ); $loop++;
+
 	?>
-	<li class="product <?php if ($loop == $count) echo 'last'; if ($loop==1) echo 'first'; ?>">
+	<li class="product <?php if ($loop%$columns==0) echo 'last'; if (($loop-1)%$columns==0) echo 'first'; ?>">
 
 		<?php do_action('jigoshop_before_shop_loop_item'); ?>
-		<a id="productAnchor" href="<?php the_permalink(); ?>">
+
+		<a href="<?php the_permalink(); ?>">
+
 			<?php do_action('jigoshop_before_shop_loop_item_title', $post, $_product); ?>
+
 			<strong><?php the_title(); ?></strong>
+
+			<?php do_action('jigoshop_after_shop_loop_item_title', $post, $_product); ?>
+
 		</a>
-                <div class="short_desc"><?php echo $_product->get_categories(); ?></div>
-                <?php do_action('jigoshop_after_shop_loop_item_title', $post, $_product); ?>
 
 		<?php do_action('jigoshop_after_shop_loop_item', $post, $_product); ?>
-                
-                <div class="clear"></div>
+
 	</li><?php
 
 	if ( $loop == $per_page ) break;
@@ -60,11 +63,10 @@ else :
 
 	$found_posts = ob_get_clean();
 
-	$content = '<ul id="crateCanvasProducts" class="products">' . $found_posts . '</ul>';
+	$content = '<ul class="products">' . $found_posts . '</ul><div class="clear"></div>';
 
 endif;
 
 echo apply_filters( 'jigoshop_loop_shop_content', $content );
 
 do_action( 'jigoshop_after_shop_loop' );
-?>
