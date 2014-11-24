@@ -356,3 +356,44 @@ function your_custom_form_class_attr( $class ) {
 		</form>
 		<?php
 	}
+	
+	
+	/**
+ * Register our sidebars and widgetized areas.
+ *
+ */
+function coues_widgets_init() {
+
+	register_sidebar( array(
+		'name' => 'Home right sidebar',
+		'id' => 'home_right_1',
+		'before_widget' => '<div>',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="rounded">',
+		'after_title' => '</h2>',
+	) );
+	
+	register_sidebar( array(
+		'name' => 'Product Categories',
+		'id' => 'shop_left_cat',
+		'before_widget' => ' <div class="shopFilterWidget"> ',
+		'after_widget' => '</div>',
+	) );
+	register_sidebar( array(
+		'name' => 'Product Tags',
+		'id' => 'shop_left_tag',
+		'before_widget' => ' <div class="shopFilterWidget"> ',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="rounded">',
+		'after_title' => '</h3> <p>The categories listed in alphabetical order.</p>',
+	) );
+	register_sidebar( array(
+		'name' => 'Price filter',
+		'id' => 'price_filter_sidebar',
+		'before_widget' => '<div>',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="rounded">',
+		'after_title' => '</h2>',
+	) );
+}
+add_action( 'widgets_init', 'coues_widgets_init' );

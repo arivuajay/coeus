@@ -17,7 +17,6 @@
 ?>
 
 <?php get_header('shop'); ?>
-
 <section>
     <div class="container">
 
@@ -38,7 +37,6 @@
         <?php endif; ?>
 
         <div><?php $count = $wp_query->post_count; echo $count ?> Products </div>
-      
 
         <div id="shopCrateCanvas" class="row">
             <div id="filterColumn" class="col-md-3">
@@ -150,4 +148,5 @@
 
     </div><!-- /container -->
 </section>
+
 <?php get_footer('shop'); ?>

@@ -11,7 +11,7 @@ $options = Jigoshop_Base::get_options();
 <section class="article-single" id="cartTmpl">
   <div class="container">
   
-  <h1 class="cartTitle">Cart</h1>
+  <h1 class="cartTitle">Cart</h1><button style="float:right" onClick="window.location.reload()">Refresh Cart</button>
   
     <div class="row">
     <?php jigoshop::show_messages(); ?>
